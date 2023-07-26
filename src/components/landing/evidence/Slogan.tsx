@@ -13,8 +13,11 @@ export default function Slogan() {
     }
 
     return (
-        <div>
+        <div className="flex flex-col justify-center gap-5">
             {renderizarFrasePrincipal()}
+            <div className="text-sm lg:text-lg font-thin text-zinc-500 text-center sm:text-le">
+                Plataforma financeira que simplifica sua vida!
+            </div>
         </div>
     )
 }
