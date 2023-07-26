@@ -9,7 +9,7 @@ export default function ResponsiveImage(props: ResponsiveImageProps) {
   return (
     <Image
         src={props.image}
-        alt="Imagem"
+        alt="Image"
         className={`
             w-[350px] h-[365px]
             lg:w-[550px] lg:h-[365px]

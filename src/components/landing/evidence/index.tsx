@@ -5,7 +5,7 @@ import image from "../../../../public/ImageInEvidence.jpg"
 
 export default function Evidence() {
     return (
-        <Area>
+        <Area className="flex-1">
             <div className="justify-between flex items-center h-[500px]">
                 <Slogan />
                 <ResponsiveImage image={image} className="rotate-3 hidden md:inline"/>
