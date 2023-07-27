@@ -9,9 +9,9 @@ export default function Footer() {
             <Logo />
             <div className="mt-3 text-zinc-400 text-cen md:text-left">
                 <div>Plataforma financeira</div>
-                <div className="flex gap-1.5">que <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-600">simplifica</span> sua vida</div>
+                <div className="flex gap-1.5">que <span className="font-black text-transparent bg-clip-text bg-gradient-to-r 
+                from-indigo-600 to-cyan-600">simplifica</span> sua vida</div>
             </div>
-      
             <div className="flex flex-col md:flex-row md:justify-between items-center text-transparent mt-14">
                 <SocialNetworks />
             </div>
