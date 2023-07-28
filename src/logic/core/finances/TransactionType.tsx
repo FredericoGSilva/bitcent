@@ -1,4 +1,4 @@
-export enum FakeTransaction { 
+export enum TransactionType { 
     RECIPE = 'recipe',
     EXPENSE = 'expense',
 }
