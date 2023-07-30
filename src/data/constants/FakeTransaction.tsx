@@ -11,7 +11,8 @@ const fakeTransactions: Transaction[] = [
         type: TransactionType.RECIPE,
     },
     {
-        id: Id.newId(),        description: 'Conta de Luz',
+        id: Id.newId(),        
+        description: 'Conta de Luz',
         value: 320.00,
         date: new Date(2023, 4, 3),
         type: TransactionType.EXPENSE,

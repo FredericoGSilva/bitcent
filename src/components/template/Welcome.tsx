@@ -1,10 +1,11 @@
+import FakeUser from "@/data/constants/FakeUser";
+
 export default function Welcome() {
-    const user = {nome: 'Fred', email: 'fred@gmail.com'}
     return (
         <div className="text-3xl font-black">
-            Olá {user.nome} 👋
+            Olá {' '} 
             <span className="hidden sm:inline-block">
-
+                {FakeUser?.name?.split(' ')[0]} {' '}👋
             </span>
         </div>
     )
