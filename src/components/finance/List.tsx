@@ -1,4 +1,6 @@
 import Transaction from "@/logic/core/finances/Transaction"
+import formatDate from "@/logic/utils/formatDate"
+import formatMoney from "@/logic/utils/formatMoney"
 import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
 
 interface ListProps {
@@ -12,6 +14,7 @@ export default function List(props: ListProps) {
             <span className={`
                 flex justify-center items-center
                 h-8 w-8 sm:h-10 p-1.5 rounded-full
+                ${transaction.type === 'recipe' ? 'bg-green-500' : 'bg-red-500'}
             `}>
                 {transaction.type === 'recipe' ? <IconTrendingUp /> : <IconTrendingDown />}
             </span>
@@ -27,6 +30,8 @@ export default function List(props: ListProps) {
             `}onClick={() => props.selectTransaction?.(transaction)} >
                 {renderType(transaction)}
                 <span className="w-full md:w-1/2">{transaction.description}</span>
+                <span className="hidden md:inline flex-1">{formatDate.ddmmyy.format(transaction.date)}</span>
+                <span>{formatMoney.format(transaction.value)}</span>
             </div>
         )        
     }
