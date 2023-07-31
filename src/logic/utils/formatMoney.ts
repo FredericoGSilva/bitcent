@@ -1,5 +1,7 @@
 export default class formatMoney {
 
+    // usar valueOff
+    
     private static _language = "pt-br"
     private static _currency = "BRL"
 
