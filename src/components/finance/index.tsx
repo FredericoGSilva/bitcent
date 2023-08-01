@@ -11,8 +11,8 @@ export default function Finance() {
     return (
         <Page>
             <Header />
-            <Summary />
-            <List transaction={transactions}
+            <Summary transactions={transactions}/>
+            <List transactions={transactions}
             />
         </Page>
     )

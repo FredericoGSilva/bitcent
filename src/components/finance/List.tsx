@@ -4,7 +4,7 @@ import formatMoney from "@/logic/utils/formatMoney"
 import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
 
 interface ListProps {
-    transaction: Transaction[]
+    transactions: Transaction[]
     selectTransaction?: (Transaction : Transaction) => void
 }
 
@@ -41,7 +41,7 @@ export default function List(props: ListProps) {
             flex flex-col border border-zinc-700
             rouded-xl overflow-hidden
         `}>
-            {props.transaction.map(renderLine)}
+            {props.transactions.map(renderLine)}
         </div>
     )
 }
