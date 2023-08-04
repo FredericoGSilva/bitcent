@@ -1,5 +1,7 @@
 import Transaction from "@/logic/core/finances/Transaction";
+import { TransactionType } from "@/logic/core/finances/TransactionType";
 import formatDate from "@/logic/utils/formatDate";
+import { IconCheck, IconTrash, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 
 interface FormProps {
@@ -56,7 +58,53 @@ export default function Form(props: FormProps) {
             })
           )}
         />
-        
+        <div className="flex gap-8">
+            <div className="flex gap-2">
+              <input 
+                type="radio"
+                name="type"
+                value="recipe"
+                checked={props.transaction.type === 'recipe'}
+                onChange={() => (
+                  setTransaction({
+                    ...transaction,
+                    type: TransactionType.RECIPE
+                  })
+                )}
+              />
+              <span>Receita</span>
+              <input 
+                type="radio"
+                name="type"
+                value="expense"
+                checked={props.transaction.type === 'expense'}
+                onChange={() => (
+                  setTransaction({
+                    ...transaction,
+                    type: TransactionType.EXPENSE
+                  })
+                )}
+              />
+              <span>Despesa</span>
+            </div>
+        </div>
+      </div>
+      <div className="flex px-4 sm:px-4 py-4 gap-3 bg-zinc-800">
+        <button className="btn bg-green-500" onClick={() => {props.toSalve?.(transaction)}}>
+          <IconCheck />
+          <span>Salvar</span>
+        </button>
+        <button className="btn bg-zinc-500" onClick={() => {props.cancel?.()}}>
+          <IconX />
+          <span className="hidden sm:inline">Cancelar</span>
+        </button>
+        <span className="flex-1"></span>
+        {props.transaction.id && (
+          <button className="btn bg-red-500" onClick={() => {props.remove?.(transaction)}}>
+            <IconTrash />
+            <span className="hidden sm:inline">Excluir</span>
+          </button>
+        )}
       </div>
     </div>
   );

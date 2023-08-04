@@ -8,6 +8,7 @@ import Summary from "./Summary";
 import Form from "./Form";
 import Id from "@/logic/core/shared/id";
 import Content from "../template/Content";
+import { IconPlus } from "@tabler/icons-react";
 
 export default function Finance() {
   const [transactions, setTransactions] = useState<Transaction[]>(fakeTransactions);
@@ -33,10 +34,11 @@ export default function Finance() {
   return (
     <Page>
       <Header />
-      <Content>
+      <Content className="gap-8">
         <Summary transactions={transactions} />
         <div>
-          <button onClick={() => setTransaction(emptyTransaction)}>
+          <button className="btn bg-blue-500" onClick={() => setTransaction(emptyTransaction)}>
+            <IconPlus />
             <span>Nova Transação</span>
           </button>
         </div>
