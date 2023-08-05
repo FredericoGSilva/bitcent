@@ -7,6 +7,7 @@ import Form from "./Form";
 import Content from "../template/Content";
 import { IconPlus } from "@tabler/icons-react";
 import useTransactions from "@/data/hooks/useTransactions";
+import NotFound from "../template/NotFound";
 
 export default function Finance() {
 
@@ -29,10 +30,14 @@ export default function Finance() {
             remove={remove}
             cancel={cancel}
             />
-        ) : (
+        ) : transactions.length ? (
             <List transactions={transactions} 
             selectTransaction={select}
             />
+        ) : (
+          <NotFound>
+              Nenhuma transação encontrada.
+          </NotFound>
         )}
       </Content>
     </Page>

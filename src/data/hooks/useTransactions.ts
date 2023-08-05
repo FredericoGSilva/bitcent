@@ -1,13 +1,18 @@
 import Transaction from "@/logic/core/finances/Transaction";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import fakeTransactions from "../constants/FakeTransaction";
 import Id from "@/logic/core/shared/id";
 
 export default function useTransactions() {
-    const [transactions, setTransactions] = useState<Transaction[]>(fakeTransactions);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [transaction, setTransaction] = useState<Transaction | null>(null);
+
+    useEffect(SearchTransactions, [])
+
+    function SearchTransactions() {
+        setTransactions(fakeTransactions)
+    }
     
-    // salvar nova transação.
     function toSalve(transaction: Transaction) {
         const otherTransactions = transactions.filter((t) => t.id != transaction.id);
         setTransactions([
@@ -17,7 +22,6 @@ export default function useTransactions() {
         setTransaction(null);
     }
 
-    // excluir
     function remove(transaction: Transaction) {
         const otherTransactions = transactions.filter((t) => t.id != transaction.id);
         setTransactions(otherTransactions);
