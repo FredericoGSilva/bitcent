@@ -1,35 +1,16 @@
-import { useState } from "react";
-import Transaction, { emptyTransaction } from "@/logic/core/finances/Transaction";
+import { emptyTransaction } from "@/logic/core/finances/Transaction";
 import Header from "../template/Header";
 import Page from "../template/Page";
 import List from "./List";
-import fakeTransactions from "@/data/constants/FakeTransaction";
 import Summary from "./Summary";
 import Form from "./Form";
-import Id from "@/logic/core/shared/id";
 import Content from "../template/Content";
 import { IconPlus } from "@tabler/icons-react";
+import useTransactions from "@/data/hooks/useTransactions";
 
 export default function Finance() {
-  const [transactions, setTransactions] = useState<Transaction[]>(fakeTransactions);
-  const [transaction, setTransaction] = useState<Transaction | null>(null);
 
-  // salvar nova transação.
-  function toSalve(transaction: Transaction) {
-    const otherTransactions = transactions.filter((t) => t.id != transaction.id);
-    setTransactions([
-      ...otherTransactions,
-      { ...transaction, id: transaction.id ?? Id.newId() },
-    ]);
-    setTransaction(null);
-  }
-
-  // excluir
-  function remove(transaction: Transaction) {
-    const otherTransactions = transactions.filter((t) => t.id != transaction.id);
-    setTransactions(otherTransactions);
-    setTransaction(null);
-  }
+  const {transactions, transaction, toSalve, remove, select, cancel} = useTransactions()
 
   return (
     <Page>
@@ -37,7 +18,7 @@ export default function Finance() {
       <Content className="gap-8">
         <Summary transactions={transactions} />
         <div>
-          <button className="btn bg-blue-500" onClick={() => setTransaction(emptyTransaction)}>
+          <button className="btn bg-blue-500" onClick={() => select(emptyTransaction)}>
             <IconPlus />
             <span>Nova Transação</span>
           </button>
@@ -46,11 +27,11 @@ export default function Finance() {
             <Form transaction={transaction}
             toSalve={toSalve}
             remove={remove}
-            cancel={() => setTransaction(null)}
+            cancel={cancel}
             />
         ) : (
             <List transactions={transactions} 
-            selectTransaction={setTransaction}
+            selectTransaction={select}
             />
         )}
       </Content>

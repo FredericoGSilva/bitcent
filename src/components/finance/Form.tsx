@@ -54,7 +54,7 @@ export default function Form(props: FormProps) {
           onChange={event => (
             setTransaction({
               ...transaction,
-              date: new Date(`${event.target.value}`)
+              date: new Date(`${event.target.value} `)
             })
           )}
         />
@@ -64,7 +64,7 @@ export default function Form(props: FormProps) {
                 type="radio"
                 name="type"
                 value="recipe"
-                checked={props.transaction.type === 'recipe'}
+                checked={transaction.type === 'recipe'}
                 onChange={() => (
                   setTransaction({
                     ...transaction,
@@ -77,7 +77,7 @@ export default function Form(props: FormProps) {
                 type="radio"
                 name="type"
                 value="expense"
-                checked={props.transaction.type === 'expense'}
+                checked={transaction.type === 'expense'}
                 onChange={() => (
                   setTransaction({
                     ...transaction,
