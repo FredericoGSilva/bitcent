@@ -1,4 +1,4 @@
-import { Auth, GoogleAuthProvider, User, getAuth, signInWithPopup } from "firebase/auth";
+import { Auth, GoogleAuthProvider, User, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import userSystem from "../../core/user/User"
 import { app } from "../configuration/app";
 
@@ -23,9 +23,12 @@ export default class Authentication {
         }
     }
 
-    // Login com o Google
     async loginGoogle(): Promise<userSystem | null> {
         const response = await signInWithPopup(this._authentication, new GoogleAuthProvider)
         return this.convertToUser(response.user)
+    }
+
+    async logout() {
+        await signOut(this._authentication)
     }
 }
