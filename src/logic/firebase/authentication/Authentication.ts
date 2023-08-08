@@ -1,4 +1,4 @@
-import { Auth, GoogleAuthProvider, User, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { Auth, GoogleAuthProvider, User, getAuth, onIdTokenChanged, signInWithPopup, signOut } from "firebase/auth";
 import userSystem from "../../core/user/User"
 import { app } from "../configuration/app";
 
@@ -28,7 +28,15 @@ export default class Authentication {
         return this.convertToUser(response.user)
     }
 
-    async logout() {
+    async logout(): Promise<void> {
         await signOut(this._authentication)
+    }
+
+    // monitorar o estado. Alterar o código
+    toMonitor(functionToMonitor: (user: userSystem | null) => void): () => void { 
+        return onIdTokenChanged(this._authentication, async(userFirebase) => {
+            const convertedUser = this.convertToUser(userFirebase)
+            functionToMonitor(convertedUser)
+        })
     }
 }
